@@ -1,0 +1,26 @@
+[
+    {
+        "name": "chest xray",
+        "pages": 2
+    },
+    {
+        "name": "CT-Sinus-Without-Contrast",
+        "pages": 1
+    },
+    {
+        "name": "CTA-Chest-W-WO-Contrast",
+        "pages": 1
+    },
+    {
+        "name": "medical_report_cbc",
+        "pages": 1
+    },
+    {
+        "name": "medical_report_chest_xray",
+        "pages": 2
+    },
+    {
+        "name": "medical_report_ecg",
+        "pages": 2
+    }
+]

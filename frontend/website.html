@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediLens AI</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+
+<body>
+
+
+    <header>
+
+        <div class="heroText">
+
+            <h1>MediLens AI</h1>
+            <p class="subtitle">
+                AI-powered Medical Document Intelligence
+            </p>
+            <p class="heroDesc">
+                Upload medical reports, prescriptions, laboratory results or
+                healthcare documents and receive accurate answers using
+                Retrieval-Augmented Generation, CLIP image retrieval and Gemini.
+            </p>
+            <a href="#docs" class="heroButton">
+                Get Started ↓
+            </a>
+        </div>
+
+        <div class="heroImage">
+            <img
+                src="images/medical-ai.svg"
+                alt="Medical AI">
+
+        </div>
+    </header>
+
+
+    <!-- ================= FEATURES ================= -->
+
+    <section class="features">
+
+        <h2>Why MediLens AI?</h2>
+        <div class="featureCards">
+            <div class="feature">
+                <div>📄</div>
+                <h3>Smart PDF Understanding</h3>
+                <p>
+                    Reads complex healthcare documents with semantic search.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div>🖼</div>
+                <h3>Image Retrieval</h3>
+                <p>
+                    Retrieves relevant medical images alongside answers.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div>🤖</div>
+                <h3>AI Powered Answers</h3>
+                <p>
+                    Uses Gemini with RAG for trustworthy responses.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section class="about">
+        <h2>About</h2>
+
+        <p class="aboutLead">
+            MediLens AI combines text retrieval, image retrieval and
+            large language models to help users quickly understand
+            healthcare documents while preserving document context.
+        </p>
+
+        <p>
+            Medical reports are dense, inconsistent, and often written for
+            clinicians rather than the people who actually receive them. A
+            single discharge summary can span pages of lab values, imaging
+            notes and dosage instructions — MediLens AI reads that document
+            once, indexes it properly, and lets you ask it questions the way
+            you would ask a person, instead of scrolling and searching by hand.
+        </p>
+
+        <div class="aboutGrid">
+            <div class="aboutBlock">
+                <h3>The problem</h3>
+                <p>
+                    Patients and caregivers routinely leave appointments with
+                    reports they don't fully understand. Important details
+                    get buried in medical terminology, scanned images, and
+                    tables that don't translate well to plain language.
+                </p>
+            </div>
+            <div class="aboutBlock">
+                <h3>Our approach</h3>
+                <p>
+                    We split every upload into searchable text and image
+                    chunks, embed them, and retrieve only the pieces relevant
+                    to your question before Gemini answers — so responses
+                    stay grounded in your actual document, not a guess.
+                </p>
+            </div>
+        </div>
+
+        <h3 class="aboutSubhead">How it works</h3>
+        <ol class="steps">
+            <li class="stepItem">
+                <span class="stepNum">01</span>
+                <div>
+                    <h4>Upload</h4>
+                    <p>Add one or more PDF reports — labs, prescriptions, discharge notes, imaging.</p>
+                </div>
+            </li>
+            <li class="stepItem">
+                <span class="stepNum">02</span>
+                <div>
+                    <h4>Index</h4>
+                    <p>Text is chunked with Sentence Transformers and stored in FAISS; images are indexed with CLIP.</p>
+                </div>
+            </li>
+            <li class="stepItem">
+                <span class="stepNum">03</span>
+                <div>
+                    <h4>Ask</h4>
+                    <p>Ask a question in plain English and get an answer grounded in the retrieved passages.</p>
+                </div>
+            </li>
+            <li class="stepItem">
+                <span class="stepNum">04</span>
+                <div>
+                    <h4>Review</h4>
+                    <p>See the supporting images alongside the answer so you can verify it against the source.</p>
+                </div>
+            </li>
+        </ol>
+
+        <div class="aboutStats">
+            <div class="statItem">
+                <strong>RAG</strong>
+                <span>grounded, not hallucinated answers</span>
+            </div>
+            <div class="statItem">
+                <strong>CLIP</strong>
+                <span>cross-modal image retrieval</span>
+            </div>
+            <div class="statItem">
+                <strong>Local-first</strong>
+                <span>documents indexed for your session only</span>
+            </div>
+        </div>
+
+        <p class="aboutNote">
+            Built for the AI for Good hackathon — MediLens AI does not
+            replace medical advice. It's a reading aid, meant to make your
+            own reports easier to understand alongside your doctor.
+        </p>
+    </section>
+
+
+    <section class="docs" id="docs">
+
+        <h2>Upload Medical Reports</h2>
+
+        <input
+            type="file"
+            id="pdfInput"
+            multiple
+            accept=".pdf"
+            hidden>
+
+        <label class="uploadBox" for="pdfInput">
+            <div class="uploadIcon">
+                📄
+            </div>
+            <h3>Choose PDF Files</h3>
+            <p>
+                Drag & Drop or Click to Browse
+            </p>
+        </label>
+
+        <p id="fileName">
+            No files selected
+        </p>
+
+        <button id="uploadBTN">
+            Upload Documents
+        </button>
+    </section>
+
+
+    <section class="question" id="question">
+        <h2>Ask MediLens AI</h2>
+        <textarea
+            id="questionInput"
+            placeholder="Ask anything about your uploaded reports..."></textarea>
+        <button id="askBTN">
+            Ask AI
+        </button>
+    </section>
+
+
+    <section class="ans_text" id="textans">
+        <h2>AI Response</h2>
+        <p id="answerText">
+            Waiting for your question...
+        </p>
+    </section>
+
+
+    <section class="ans_img" id="images">
+
+        <h2>Supporting Images</h2>
+        <div id="imageContainer"></div>
+
+    </section>
+
+
+    <footer>
+        <p>
+            Built using FastAPI • FAISS • Sentence Transformers •
+            CLIP • Gemini
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

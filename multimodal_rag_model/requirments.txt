@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+faiss-cpu
+google-generativeai
+transformers
+torch
+python-dotenv
+python-multipart
